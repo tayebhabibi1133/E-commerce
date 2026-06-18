@@ -48,7 +48,7 @@ function OrdersPage() {
         </div>
       ) : (
         <div className="space-y-4">
-          {orders.map((o: { id: string; order_number: string; status: string; total: number; created_at: string; order_items: { id: string; title: string; quantity: number; unit_price: number; image_url?: string }[] }) => (
+          {orders.map((o: { id: string; order_number: string; status: string; total: number; created_at: string; order_items: { id: string; title: string; quantity: number; unit_price: number; image_url: string | null }[] }) => (
             <div key={o.id} className="rounded-2xl border border-border/60 bg-card p-5 shadow-card">
               <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
                 <div>

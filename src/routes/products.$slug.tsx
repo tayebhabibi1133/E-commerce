@@ -117,7 +117,7 @@ function ProductPage() {
           <p className="text-muted-foreground">No reviews yet. Be the first to review this product.</p>
         ) : (
           <div className="space-y-3">
-            {reviews.map((r: { id: string; rating: number; title?: string; body?: string }) => (
+            {reviews.map((r: { id: string; rating: number; title: string | null; body: string | null }) => (
               <div key={r.id} className="rounded-xl border border-border/60 p-4">
                 <div className="flex items-center gap-1 mb-1">
                   {Array.from({ length: 5 }).map((_, i) => <Star key={i} className={`size-4 ${i < r.rating ? "fill-accent text-accent" : "text-muted"}`} />)}
