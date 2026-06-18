@@ -81,7 +81,7 @@ function ProductPage() {
           <h1 className="font-display text-3xl font-bold">{product.title}</h1>
           <div className="flex items-center gap-3 mt-2">
             <div className="flex items-center gap-1 text-sm"><Star className="size-4 fill-accent text-accent" /> {Number(product.rating).toFixed(1)} <span className="text-muted-foreground">({product.reviews_count})</span></div>
-            <Link to="/sellers/$slug" params={{ slug: product.stores.slug }} className="text-sm text-primary hover:underline">{product.stores.name}</Link>
+            <span className="text-sm text-primary">{product.stores.name}</span>
           </div>
           <div className="mt-4 flex items-baseline gap-3">
             <span className="font-display text-4xl font-bold">{formatPrice(product.price, product.currency)}</span>
