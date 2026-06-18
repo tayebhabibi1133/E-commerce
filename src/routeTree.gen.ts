@@ -10,18 +10,33 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WishlistRouteImport } from './routes/wishlist'
+import { Route as SellerRouteImport } from './routes/seller'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as OrdersRouteImport } from './routes/orders'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SellerIndexRouteImport } from './routes/seller.index'
+import { Route as SellerProductsRouteImport } from './routes/seller.products'
+import { Route as SellerOrdersRouteImport } from './routes/seller.orders'
+import { Route as SellerOnboardingRouteImport } from './routes/seller.onboarding'
+import { Route as SellerMessagesRouteImport } from './routes/seller.messages'
+import { Route as SellerCouponsRouteImport } from './routes/seller.coupons'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as MessagesIdRouteImport } from './routes/messages.$id'
+import { Route as ApiChatRouteImport } from './routes/api.chat'
 
 const WishlistRoute = WishlistRouteImport.update({
   id: '/wishlist',
   path: '/wishlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellerRoute = SellerRouteImport.update({
+  id: '/seller',
+  path: '/seller',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileRoute = ProfileRouteImport.update({
@@ -54,30 +69,86 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const SellerIndexRoute = SellerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SellerRoute,
+} as any)
+const SellerProductsRoute = SellerProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => SellerRoute,
+} as any)
+const SellerOrdersRoute = SellerOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => SellerRoute,
+} as any)
+const SellerOnboardingRoute = SellerOnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => SellerRoute,
+} as any)
+const SellerMessagesRoute = SellerMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => SellerRoute,
+} as any)
+const SellerCouponsRoute = SellerCouponsRouteImport.update({
+  id: '/coupons',
+  path: '/coupons',
+  getParentRoute: () => SellerRoute,
 } as any)
 const ProductsSlugRoute = ProductsSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
   getParentRoute: () => ProductsRoute,
 } as any)
+const MessagesIdRoute = MessagesIdRouteImport.update({
+  id: '/messages/$id',
+  path: '/messages/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRouteWithChildren
   '/profile': typeof ProfileRoute
+  '/seller': typeof SellerRouteWithChildren
   '/wishlist': typeof WishlistRoute
+  '/api/chat': typeof ApiChatRoute
+  '/messages/$id': typeof MessagesIdRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/seller/coupons': typeof SellerCouponsRoute
+  '/seller/messages': typeof SellerMessagesRoute
+  '/seller/onboarding': typeof SellerOnboardingRoute
+  '/seller/orders': typeof SellerOrdersRoute
+  '/seller/products': typeof SellerProductsRoute
+  '/seller/': typeof SellerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
@@ -85,35 +156,64 @@ export interface FileRoutesByTo {
   '/products': typeof ProductsRouteWithChildren
   '/profile': typeof ProfileRoute
   '/wishlist': typeof WishlistRoute
+  '/api/chat': typeof ApiChatRoute
+  '/messages/$id': typeof MessagesIdRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/seller/coupons': typeof SellerCouponsRoute
+  '/seller/messages': typeof SellerMessagesRoute
+  '/seller/onboarding': typeof SellerOnboardingRoute
+  '/seller/orders': typeof SellerOrdersRoute
+  '/seller/products': typeof SellerProductsRoute
+  '/seller': typeof SellerIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRouteWithChildren
   '/profile': typeof ProfileRoute
+  '/seller': typeof SellerRouteWithChildren
   '/wishlist': typeof WishlistRoute
+  '/api/chat': typeof ApiChatRoute
+  '/messages/$id': typeof MessagesIdRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/seller/coupons': typeof SellerCouponsRoute
+  '/seller/messages': typeof SellerMessagesRoute
+  '/seller/onboarding': typeof SellerOnboardingRoute
+  '/seller/orders': typeof SellerOrdersRoute
+  '/seller/products': typeof SellerProductsRoute
+  '/seller/': typeof SellerIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/auth'
     | '/cart'
     | '/checkout'
     | '/orders'
     | '/products'
     | '/profile'
+    | '/seller'
     | '/wishlist'
+    | '/api/chat'
+    | '/messages/$id'
     | '/products/$slug'
+    | '/seller/coupons'
+    | '/seller/messages'
+    | '/seller/onboarding'
+    | '/seller/orders'
+    | '/seller/products'
+    | '/seller/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/auth'
     | '/cart'
     | '/checkout'
@@ -121,29 +221,51 @@ export interface FileRouteTypes {
     | '/products'
     | '/profile'
     | '/wishlist'
+    | '/api/chat'
+    | '/messages/$id'
     | '/products/$slug'
+    | '/seller/coupons'
+    | '/seller/messages'
+    | '/seller/onboarding'
+    | '/seller/orders'
+    | '/seller/products'
+    | '/seller'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/auth'
     | '/cart'
     | '/checkout'
     | '/orders'
     | '/products'
     | '/profile'
+    | '/seller'
     | '/wishlist'
+    | '/api/chat'
+    | '/messages/$id'
     | '/products/$slug'
+    | '/seller/coupons'
+    | '/seller/messages'
+    | '/seller/onboarding'
+    | '/seller/orders'
+    | '/seller/products'
+    | '/seller/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   AuthRoute: typeof AuthRoute
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
   OrdersRoute: typeof OrdersRoute
   ProductsRoute: typeof ProductsRouteWithChildren
   ProfileRoute: typeof ProfileRoute
+  SellerRoute: typeof SellerRouteWithChildren
   WishlistRoute: typeof WishlistRoute
+  ApiChatRoute: typeof ApiChatRoute
+  MessagesIdRoute: typeof MessagesIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -153,6 +275,13 @@ declare module '@tanstack/react-router' {
       path: '/wishlist'
       fullPath: '/wishlist'
       preLoaderRoute: typeof WishlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seller': {
+      id: '/seller'
+      path: '/seller'
+      fullPath: '/seller'
+      preLoaderRoute: typeof SellerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile': {
@@ -197,6 +326,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -204,12 +340,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/seller/': {
+      id: '/seller/'
+      path: '/'
+      fullPath: '/seller/'
+      preLoaderRoute: typeof SellerIndexRouteImport
+      parentRoute: typeof SellerRoute
+    }
+    '/seller/products': {
+      id: '/seller/products'
+      path: '/products'
+      fullPath: '/seller/products'
+      preLoaderRoute: typeof SellerProductsRouteImport
+      parentRoute: typeof SellerRoute
+    }
+    '/seller/orders': {
+      id: '/seller/orders'
+      path: '/orders'
+      fullPath: '/seller/orders'
+      preLoaderRoute: typeof SellerOrdersRouteImport
+      parentRoute: typeof SellerRoute
+    }
+    '/seller/onboarding': {
+      id: '/seller/onboarding'
+      path: '/onboarding'
+      fullPath: '/seller/onboarding'
+      preLoaderRoute: typeof SellerOnboardingRouteImport
+      parentRoute: typeof SellerRoute
+    }
+    '/seller/messages': {
+      id: '/seller/messages'
+      path: '/messages'
+      fullPath: '/seller/messages'
+      preLoaderRoute: typeof SellerMessagesRouteImport
+      parentRoute: typeof SellerRoute
+    }
+    '/seller/coupons': {
+      id: '/seller/coupons'
+      path: '/coupons'
+      fullPath: '/seller/coupons'
+      preLoaderRoute: typeof SellerCouponsRouteImport
+      parentRoute: typeof SellerRoute
+    }
     '/products/$slug': {
       id: '/products/$slug'
       path: '/$slug'
       fullPath: '/products/$slug'
       preLoaderRoute: typeof ProductsSlugRouteImport
       parentRoute: typeof ProductsRoute
+    }
+    '/messages/$id': {
+      id: '/messages/$id'
+      path: '/messages/$id'
+      fullPath: '/messages/$id'
+      preLoaderRoute: typeof MessagesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -226,15 +418,40 @@ const ProductsRouteWithChildren = ProductsRoute._addFileChildren(
   ProductsRouteChildren,
 )
 
+interface SellerRouteChildren {
+  SellerCouponsRoute: typeof SellerCouponsRoute
+  SellerMessagesRoute: typeof SellerMessagesRoute
+  SellerOnboardingRoute: typeof SellerOnboardingRoute
+  SellerOrdersRoute: typeof SellerOrdersRoute
+  SellerProductsRoute: typeof SellerProductsRoute
+  SellerIndexRoute: typeof SellerIndexRoute
+}
+
+const SellerRouteChildren: SellerRouteChildren = {
+  SellerCouponsRoute: SellerCouponsRoute,
+  SellerMessagesRoute: SellerMessagesRoute,
+  SellerOnboardingRoute: SellerOnboardingRoute,
+  SellerOrdersRoute: SellerOrdersRoute,
+  SellerProductsRoute: SellerProductsRoute,
+  SellerIndexRoute: SellerIndexRoute,
+}
+
+const SellerRouteWithChildren =
+  SellerRoute._addFileChildren(SellerRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   AuthRoute: AuthRoute,
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
   OrdersRoute: OrdersRoute,
   ProductsRoute: ProductsRouteWithChildren,
   ProfileRoute: ProfileRoute,
+  SellerRoute: SellerRouteWithChildren,
   WishlistRoute: WishlistRoute,
+  ApiChatRoute: ApiChatRoute,
+  MessagesIdRoute: MessagesIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

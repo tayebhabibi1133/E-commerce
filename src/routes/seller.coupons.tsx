@@ -40,7 +40,7 @@ function Coupons() {
         <Button onClick={create} className="bg-gradient-primary text-primary-foreground"><Plus className="size-4 me-1" /> Create</Button>
       </Card>
       <div className="space-y-2">
-        {list.map((c: { id: string; code: string; discount_percent: number; times_used: number }) => (
+        {list.map((c: { id: string; code: string; discount_percent: number | null; times_used: number }) => (
           <Card key={c.id} className="p-3 flex items-center gap-3">
             <div className="font-mono font-bold text-primary">{c.code}</div>
             <div className="text-sm">{c.discount_percent}% off</div>
